@@ -20,11 +20,18 @@ var socket = io("http://localhost:3000");
 //   liveMode: true,
 // });
 
+var roomName = "test-room-1";
+
 socket.on("connect", () => {
+  // instruct a room name to be joined by server
+  socket.emit("new-user", roomName);
+
   rrweb.record({
     emit(event) {
       console.log(event);
-      socket.emit("event", event);
+      //socket.emit("event", event);
+      socket.emit("send-event", { event: event, room: roomName });
+      //socket.to(roomName).emit("event", event);
     },
   });
 
