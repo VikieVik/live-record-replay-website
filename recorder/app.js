@@ -1,41 +1,31 @@
-// var events = [];
+var cronyScript = document.createElement("SCRIPT");
+cronyScript.src = "https://cdn.socket.io/4.4.1/socket.io.min.js";
+cronyScript.type = "text/javascript";
+document.getElementsByTagName("HEAD")[0].appendChild(cronyScript);
 
-// let stopFn = rrweb.record({
-//   emit(event) {
-//     console.log(event);
-//     if (events.length > 10) {
-//       // stop after 100 events
-//       stopFn();
-//       const replayer = new rrweb.Replayer(events);
-//       replayer.play();
-//     } else {
-//       events.push(event);
-//     }
-//   },
-// });
+// globle window funtion can be accessed from anywhere in the browser
+window.cronyWidget = function (customConfig) {
+  var { token, apiServer } = customConfig;
 
-var socket = io("http://localhost:3000");
+  // var socket = io("http://localhost:3000");
+  // var roomName = "SqFR5uoLEUX8Qzuo66xF686qxf23";
 
-// const replayer = new rrweb.Replayer([], {
-//   liveMode: true,
-// });
+  var socket = io(apiServer);
+  var roomName = token;
 
-var roomName = "test-room-1";
+  console.log("crony script initiated.....");
 
-socket.on("connect", () => {
-  // instruct a room name to be joined by server
-  socket.emit("new-user", roomName);
+  socket.on("connect", () => {
+    // instruct a room name to be joined by server
+    socket.emit("new-user", roomName);
 
-  rrweb.record({
-    emit(event) {
-      console.log(event);
-      //socket.emit("event", event);
-      socket.emit("send-event", { event: event, room: roomName });
-      //socket.to(roomName).emit("event", event);
-    },
+    rrweb.record({
+      emit(event) {
+        console.log(event);
+        //socket.emit("event", event);
+        socket.emit("send-event", { event: event, room: roomName });
+        //socket.to(roomName).emit("event", event);
+      },
+    });
   });
-
-  // for (let i = 0; i < 10; i++) {
-  //   socket.emit("event", { data: i });
-  // }
-});
+};
