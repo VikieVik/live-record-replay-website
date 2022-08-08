@@ -20,8 +20,13 @@ io.on("connection", (socket) => {
 
   //emit recevied message to specified room
   socket.on("send-event", function (data) {
-    console.log(data.room + " created...");
-    io.to(data.room).emit("event", data.event);
+    console.log("message from user in room... " + data.room);
+    io.to(data.room).emit("user-event", data.event);
+  });
+
+  socket.on("receive-event", function (data) {
+    console.log("message from agent in room... " + data.room);
+    io.to(data.room).emit("agent-event", data.event);
   });
 
   // receive event from one client and send to other

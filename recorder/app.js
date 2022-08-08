@@ -22,10 +22,14 @@ window.cronyWidget = function (customConfig) {
     rrweb.record({
       emit(event) {
         console.log(event);
-        //socket.emit("event", event);
+        // sent to room for agent
         socket.emit("send-event", { event: event, room: roomName });
-        //socket.to(roomName).emit("event", event);
       },
+    });
+
+    // recevied from agent side
+    socket.on("agent-event", (data) => {
+      console.log(data);
     });
   });
 };
