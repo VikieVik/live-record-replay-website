@@ -3,5 +3,4 @@ Uses rrweb and socket to replay session recording on one site onto client in rea
 
 
 Follow video for demo/setup
-https://user-images.githubusercontent.com/30192834/183419924-b4d75a9c-6111-4423-bc14-03f048b2eb01.mp4
-
+https://www.loom.com/share/faf8f17cf6eb4e1b99f5785e6d59e05e
