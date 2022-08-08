@@ -7,4 +7,6 @@ https://www.loom.com/share/faf8f17cf6eb4e1b99f5785e6d59e05e
 
 
 Youtube link 
-https://img.youtube.com/vi/acdkxtGGGTk/default.jpg  
+
+[![Watch the video](https://img.youtube.com/vi/acdkxtGGGTk/default.jpg)](https://youtu.be/acdkxtGGGTk)
+
